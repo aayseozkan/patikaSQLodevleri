@@ -88,3 +88,46 @@ city tablosundaki şehir isimlerinin kaç tanesi 'R' veya r karakteri ile biter?
 SELECT COUNT(*) FROM city
 WHERE city ILIKE '%R';
 ```
+## Ödev5
+film tablosunda bulunan ve film ismi (title) 'n' karakteri ile biten en uzun (length) 5 filmi sıralayınız.
+```sql
+SELECT * FROM film
+WHERE title LIKE '%n'
+ORDER BY length DESC
+LIMIT 5;
+```
+film tablosunda bulunan ve film ismi (title) 'n' karakteri ile biten en kısa (length) ikinci(6,7,8,9,10) 5 filmi(6,7,8,9,10) sıralayınız.
+```sql
+SELECT title, length FROM film
+WHERE title LIKE '%n'
+ORDER BY length
+OFFSET 5
+LIMIT 5;
+```
+customer tablosunda bulunan last_name sütununa göre azalan yapılan sıralamada store_id 1 olmak koşuluyla ilk 4 veriyi sıralayınız.
+```sql
+SELECT * FROM customer
+WHERE store_id=1
+ORDER BY last_name DESC
+LIMIT 4;
+```
+## Ödev6
+film tablosunda bulunan rental_rate sütunundaki değerlerin ortalaması nedir?
+```sql
+SELECT AVG(rental_rate) FROM film;
+```
+film tablosunda bulunan filmlerden kaç tanesi 'C' karakteri ile başlar?
+```sql
+SELECT COUNT(*) FROM film
+WHERE title LIKE 'C%';
+```
+film tablosunda bulunan filmlerden rental_rate değeri 0.99 a eşit olan en uzun (length) film kaç dakikadır?
+```sql
+SELECT MAX(length) FROM film
+WHERE rental_rate = 0.99;
+```
+film tablosunda bulunan filmlerin uzunluğu 150 dakikadan büyük olanlarına ait kaç farklı replacement_cost değeri vardır?
+```sql
+SELECT COUNT(DISTINCT replacement_cost) FROM film
+WHERE length > 150;
+```
