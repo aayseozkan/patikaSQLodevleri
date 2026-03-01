@@ -155,3 +155,45 @@ GROUP BY country_id
 ORDER BY COUNT(*) DESC
 LIMIT 1;
 ```
+## Ödev8
+test veritabanınızda employee isimli sütun bilgileri id(INTEGER), name VARCHAR(50), birthday DATE, email VARCHAR(100) olan bir tablo oluşturalım.
+```sql
+CREATE TABLE employee (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(50) NOT NULL,
+	birthday DATE ,
+	email VARCHAR(100)
+);
+```
+Oluşturduğumuz employee tablosuna 'Mockaroo' servisini kullanarak 50 adet veri ekleyelim.
+```sql
+insert into employee (name, birthday, email) values ('Miller', null, 'mmandrier0@cpanel.net');
+insert into employee (name, birthday, email) values ('Parry', '1999-03-27', 'pishaki1@va.gov');
+...
+insert into employee (name, birthday, email) values ('Cordelia', '1999-09-10', 'cwithringten1d@nifty.com');
+```
+Sütunların her birine göre diğer sütunları güncelleyecek 3 adet UPDATE işlemi yapalım.
+```sql
+UPDATE employee
+SET name = 'xxx'
+WHERE name LIKE 'P%';
+
+UPDATE employee
+SET birthday = '1990.01.01'
+WHERE birthday IS NULL;
+
+UPDATE employee
+SET email = 'updated@gmail.com'
+WHERE id < 3;
+```
+Sütunların her birine göre ilgili satırı silecek 3 adet DELETE işlemi yapalım.
+```sql
+DELETE FROM employee
+WHERE id = 3;
+
+DELETE FROM employee
+WHERE name = 'xxx';
+
+DELETE FROM employee
+WHERE name LIKE '__e';
+```
